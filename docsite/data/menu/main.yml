@@ -1,0 +1,20 @@
+---
+main:
+  - name: Intro
+    ref: "/intro"
+  - name: Resumen
+    ref: "/overview"
+    sub:
+      - name: Reglas
+        ref: "/overview/rules"
+      - name: Actores
+        ref: "/overview/actors"
+  - name: DroneTown
+    ref: "/dronetown"
+    sub:
+      - name: Integrantes
+        ref: "/dronetown/agents"
+      - name: Proceso
+        ref: "/dronetown/proc"
+      - name: Ejemplos
+        ref: "/dronetown/examples"
