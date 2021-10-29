@@ -9,6 +9,9 @@ main:
         ref: "/overview/rules"
       - name: Actores
         ref: "/overview/actors"
+        sub:
+          - name: Programador
+            ref: "/overview/actors/programmer"
   - name: DroneTown
     ref: "/dronetown"
     sub:
