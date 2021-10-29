@@ -2,22 +2,22 @@
 main:
   - name: Intro
     ref: "/intro"
-  - name: Resumen
+  - name: Overvieew
     ref: "/overview"
     sub:
-      - name: Reglas
+      - name: Rules
         ref: "/overview/rules"
-      - name: Actores
+      - name: Actors
         ref: "/overview/actors"
         sub:
-          - name: Programador
+          - name: Programmer
             ref: "/overview/actors/programmer"
   - name: DroneTown
     ref: "/dronetown"
     sub:
-      - name: Integrantes
+      - name: Agents
         ref: "/dronetown/agents"
-      - name: Proceso
+      - name: Process
         ref: "/dronetown/proc"
-      - name: Ejemplos
+      - name: Examples
         ref: "/dronetown/examples"
