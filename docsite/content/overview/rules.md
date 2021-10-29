@@ -4,7 +4,21 @@ date: 2021-10-26T12:14:39+02:00
 draft: true
 ---
 
-## Una regla completa
+En el este caso de la ejecución de una regla completa podemos ver el proceso de
+abstracción completo desde la regla más general, llegando a un trozo de código
+ejecutado.
+
+Este es un ejemplo sencillo y puntual, se reserva para otras ejemplos una regla
+fallida, una regla incompleta y otros escenario secundarios. Actualmente la PoC
+de Overlord está centrada en la viabilidad por lo que se ciñe a los "Happy
+Path".
+
+También queda excluido del ejemplo el log, que debido a su extensión,
+resultaría muy complejo de explicar detalladamente. En el log estarán los
+resultados parciales de todas las ejecuciones, herramientas y caminos del grafo
+dinámico descartados.
+
+# Una regla completa
 
 <style>
 .gdoc-expand {
@@ -122,7 +136,7 @@ Esta regla tiene un Hash SHA256 para poder hacer referencia a ella en los
 sistemas de segimiento de riesgos transversales a la compañía.
 
 {{< /expand >}}
-{{< expand "Targeting" "" "">}}
+{{< expand "Apuntado" "" "">}}
 
 ```
 => Rationale
@@ -197,7 +211,7 @@ identificador del nivel superior y de esa forma no tendremos notificaciones
 cada vez que cambie un detalle del entorno.
 
 {{< /expand >}}
-{{< expand "Execution" "" "">}}
+{{< expand "Ejecución" "" "">}}
 
 ```
 => Rationale
@@ -221,5 +235,102 @@ url = [one.com, two.com]
 Para la ejecución podemos proveer a la regla del resto de parámetros
 necesarios. En este caso los nombres de dominio implicados en el test del
 control.
+
+# Actores
+
+En este caso los encargados de la ejecución del código de comprobación, ya sea
+de forma manual o automatizada. Pueden incluir los siguientes perfiles: 
+
+ * Desarrolladores interesados en mejorar la seguridad del código
+ * Auditores que quieran comprobar el estado de un control
+ * Expertos en seguridad que quieran comprobar el estados de un control
+
+{{< /expand >}}
+{{< expand "+Hash" "" "blue">}}
+
+```
+=> Rationale
+The communications with user must be secure  
+=> Rule  
+All ($url) must have (g$tls_version) >= (ch$version)  
+== rule id  
+03669a7dfefe38399e193ca8455b7bc92a62b83fdf1991922234acbcde9f04c5  
+=> Check Block  
+version = 1.3  
+== rule id  
+b125b13bfb29e13c2e4b9ed4d491c1656ccf693c9959b1517908399e82ba8779  
+=> Target Block  
+dns_ip = 1.2.3.4  
+== rule id  
+20038dd2edf3e8b8673d0e6c5e13b142bf81a88cde9a1c404f4ba3fb75ade4c1
+<= cli params
+url = [one.com, two.com]
+== execution id
+26b67743880b9bc6cbdbe66d51abd2d8846822bf7325d2e2bef08c611a6023d5
+```
+
+De nuevo el identificador contiene los parámetros de la ejecución de forma que
+no se puedan cambiar las condiciones de ejecución sin que este cambie
+
+{{< /expand >}}
+{{< expand "Resultado" "" "">}}
+
+```
+=> Rationale
+The communications with user must be secure  
+=> Rule  
+All ($url) must have (g$tls_version) >= (ch$version)  
+== rule id  
+03669a7dfefe38399e193ca8455b7bc92a62b83fdf1991922234acbcde9f04c5  
+=> Check Block  
+version = 1.3  
+== rule id  
+b125b13bfb29e13c2e4b9ed4d491c1656ccf693c9959b1517908399e82ba8779  
+=> Target Block  
+dns_ip = 1.2.3.4  
+== rule id  
+20038dd2edf3e8b8673d0e6c5e13b142bf81a88cde9a1c404f4ba3fb75ade4c1
+<= cli params
+url = [one.com, two.com]
+== Execution path
+dns_mask_tool
+ssl_tools
+rule_check
+== Final Rule
+All [
+  ("one.com" as $url) must have ("1.3" as g$tls_version) >= ("1.3" as ch$version),
+  ("two.com" as $url) must have ("1.3" as g$tls_version) >= ("1.3" as ch$version),
+  ]
+== Result
+All Rules OK
+== Result id
+c04a56d97f7e8e6d506e15c9d37ef45849fdb90a06d6b21d8d41b6516adfc67b
+```
+
+En el paso final, usando el grafo dinámico, seguimos los siguientes pasos: 
+
+ * En primer lugar estamos ejecutando código que haciendo uso de
+   la herramienta "DNSMask" resolverá las url usando un determinado servidor DNS
+   (pasado como parámetro en el bloque "Target Block"). 
+ * Luego se usa la herramienta de análisis de ssl y se extrae la propiedad
+   buscada (tls_version).
+ * Se expande la regla con esta información.
+ * Se evalua
+
+De esta forma obtenemos un "All Rules OK". Nuestro control esta funcionando.
+
+Adicionalmente podemos ver que se ha generado un nuevo hash, que incluye datos
+de todo lo anterior.
+
+# Actores
+
+El resultado de la ejecución es algo interesa a todos los implicados en el
+proceso. En este caso el hash además incluye la hora del sistema para que
+evitar que se reutilizen resultados anteriores. O para usar los resultados
+cacheados si la caducidad de la regla esta establecida (no en este ejemplo).
+
+Los bloques de código ejecutados son creados por los desarrolladores, si es que
+no existen ya. Es una responsabilidad compartida el elegir que trozos de código
+se cargan en Overlord.
 
 {{< /expand >}}
