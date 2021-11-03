@@ -1,8 +1,8 @@
 languageCode = 'es-es'
 title = 'Overlord'
+defaultContentLanguage = 'es'
 
 theme = 'geekdoc'
-
 
 pluralizeListTitles = false
 
@@ -28,3 +28,9 @@ enableRobotsTXT = true
 
 [params]
   geekdocMenuBundle = true
+
+[languages]
+  [languages.es]
+    weight = 1
+  [languages.en]
+    weight = 2

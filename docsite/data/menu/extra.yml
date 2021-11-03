@@ -1,0 +1,14 @@
+---
+header:
+  - name: Es
+    ref: /
+    icon: es
+    external: true
+  - name: En
+    ref: /en/
+    icon: en
+    external: true
+  - name: Us
+    ref: /en/
+    icon: us
+    external: true
