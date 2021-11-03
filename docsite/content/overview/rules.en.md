@@ -4,21 +4,14 @@ date: 2021-10-26T12:14:39+02:00
 draft: true
 ---
 
-En el este caso de la ejecución de una regla completa podemos ver el proceso de
-abstracción completo desde la regla más general, llegando a un trozo de código
-ejecutado.
+In the case of the execution of a complete rule, we can see the complete abstraction process from the most general rule to the piece of code finally executed.
 
-Este es un ejemplo sencillo y puntual, se reserva para otras ejemplos una regla
-fallida, una regla incompleta y otros escenario secundarios. Actualmente la PoC
-de Overlord está centrada en la viabilidad por lo que se ciñe a los "Happy
-Path".
+This is a simple example; a failed rule, an incomplete rule and other secondary scenarios are reserved for other examples. Currently the Overlord PoC is focused on viability so it develops just the "Happy Path".
 
-También queda excluido del ejemplo el log, que debido a su extensión,
-resultaría muy complejo de explicar detalladamente. En el log estarán los
-resultados parciales de todas las ejecuciones, herramientas y caminos del grafo
-dinámico descartados.
+The complete log is also excluded from this example, because due to its length it would be very complex to explain in detail. In the log there will be the partial results of all the intermediate executions, tools and paths of the discarded dynamic graph.
 
-# Una regla completa
+
+# A complete rule
 
 <style>
 .gdoc-expand {
@@ -31,63 +24,58 @@ dinámico descartados.
 }
 </style>
 
-{{< expand "Recomendación / Regla General" >}}
+{{< expand "Recommendation / Generic Rule" >}}
 
 ```
 => Rationale
-The communications with user must be secure
+PCI DSS 4.1 Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks.
+
 => Rule
 All ($url) must have (g$tls_version) >= (ch$version)
 ```
 
-En este punto una regla es una recomendación abstracta de alto nivel. Su
-principal función es permitir una idea transversal a todos los proyectos de la
-empresa, con esta se puede saber de forma global si las todas las
-comunicaciones de la empresa cumplen con este control.
+At this point a rule is an abstract high-level recommendation. Its purpose is to recommend a transversal and generic control to all the projects of the company, and it’s enough as a “definition of done” or “security feature story” to check if all the communications of the company comply with this control.
 
-También permite la colaboración entre empresas a un nivel muy general.
 
-En esta regla podemos ver varios conceptos generales como la palabra reservada
-*All* que indica que esta regla debe ser cierta para todos los integrantes
-siguientes. También podemos ver unas palabras entre parentesis; estos son los
-parámetros que permiten instanciar esta regla para un entorno en concreto.
+It also enables collaboration between companies/organizations on a very general level as it doesn’t need details about the targets ($url) and goals (ch$version).
 
-**No te fijes en los detalles funcionales de la regla, según esta progrese por
-el sistema entenderás todo el proceso.**
+In this rule we can observe some general concepts such as the reserved word * All * that indicates that this rule must be true for all the following members. We can also see some words in parentheses; those are the parameters that allow you to instantiate this rule for a specific environment.
 
-## Actores
 
-Los principales productores de este tipo de reglas serán:
+**Don’t pay attention to the functional details of the rule, as it progresses through the system you will understand the whole process.**
 
- * Los grupos de trabajo dedicados a seguridad (Ej: OWASP)
- * Las agencias de seguridad y estandarización (Ej: NIST)
- * Los líderes de la industría a nivel de seguridad
+## Actors
 
-Los principales interesados en estas reglas serán:
+The main producers of these rules will be:
 
- * Los CISO y CTO de todas las empresas
+ * Security communities (Ex.: OWASP)
+ * Standardization bodies and agencies (Ex.: NIST)
+ * Security and infrastructure vendors at large
+
+The main stakeholders in these rules will be:
+
+ * CISOs, CTOs, Compliance&Audit
 
 {{< /expand >}}
 {{< expand "+Hash" "" "blue">}}
 
 ```
 => Rationale
-The communications with user must be secure
+PCI DSS 4.1 Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks.
 => Rule
 All ($url) must have (g$tls_version) >= (ch$version)
 == rule id
 03669a7dfefe38399e193ca8455b7bc92a62b83fdf1991922234acbcde9f04c5
 ```
 
-Esta regla tiene un Hash SHA256 para poder hacer referencia a ella en las
-discusiones de la comunidad.
+This rule has a SHA256 hash so that it can be referenced in community discussions.
 
 {{< /expand >}}
-{{< expand "Instanciación General" "" "">}}
+{{< expand "General Instantiation" "" "">}}
 
 ```
 => Rationale
-The communications with user must be secure  
+PCI DSS 4.1 Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks.
 => Rule  
 All ($url) must have (g$tls_version) >= (ch$version)  
 == rule id  
@@ -95,33 +83,24 @@ All ($url) must have (g$tls_version) >= (ch$version)
 => Check Block  
 version = 1.3  
 ```
+At this point we are specifying in the rule that in our organization we consider a TLS version of 1.3 or higher to be secure. This block allows you to set the parameters, which, as we saw in the previous point, have a "$" symbol and are also enclosed in parentheses.
 
-En este punto de la regla estamos especificando que en nuestra empresa
-consideramos segura una versión de TLS de 1.3 o superior. Este bloque permite
-establecer los parámetros, que como vimos en el punto anterior tienen un
-símbolo "$" y además están entre paréntesis.
+If you notice this parameter has the letters ch before the "$" symbol, this tells Overlord that this parameter can only be specified in the "Check" phase; which is where the cross-organizational criteria are established.
 
-Si te fijas este parámetro tiene las letras ch antes del símbolo del "$", esto
-le dice a Overlord que ese parámetro solo se puede especificar en la fase de
-"Check"; que es donde se establecen los criterios transversales a la
-organización.
+Those criteria express the security posture and should be the result of a threat modeling or a compliance constrain
 
-Este tipo de decisiones suelen ser las que están expresadas como controles de
-seguridad. Estos controles idealmente son el resultado de un proceso de treat
-modeling.
 
-# Actores
+# Actors
 
-Este tipo de decisiones se toman a nivel transversal en una organización.
-Incluuyen no solo al CISO o CTO sino también a los técnicos de seguridad de más
-alto nivel y experiencia.
+These types of decisions are made across an organization. Each organization has its own governance model to select and approve the final criteria on each adjustable goal.
+
 
 {{< /expand >}}
 {{< expand "+Hash" "" "blue">}}
 
 ```
 => Rationale
-The communications with user must be secure  
+PCI DSS 4.1 Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks.
 => Rule  
 All ($url) must have (g$tls_version) >= (ch$version)  
 == rule id  
@@ -132,15 +111,15 @@ version = 1.3
 b125b13bfb29e13c2e4b9ed4d491c1656ccf693c9959b1517908399e82ba8779
 ```
 
-Esta regla tiene un Hash SHA256 para poder hacer referencia a ella en los
-sistemas de segimiento de riesgos transversales a la compañía.
+This rule has a SHA256 Hash to be able to refer to it in the ASR-TM (Application Security Requirements and Threat Management) or GRC (Governance, Risk management, and Compliance) of the organization.
+
 
 {{< /expand >}}
-{{< expand "Apuntado" "" "">}}
+{{< expand "Target" "" "">}}
 
 ```
 => Rationale
-The communications with user must be secure  
+PCI DSS 4.1 Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks.
 => Rule  
 All ($url) must have (g$tls_version) >= (ch$version)  
 == rule id  
@@ -153,40 +132,27 @@ b125b13bfb29e13c2e4b9ed4d491c1656ccf693c9959b1517908399e82ba8779
 dns_ip = 1.2.3.4  
 ```
 
-Dentro del proceso de testing de riesgos es necesario agregar algunos
-parámetros técnicos del proyecto concreto. En este caso estamos agregando uno
-que no esta explícitamente en la regla, de forma que el grafo dinámico priorice
-los caminos que usan esta información.
+In the control testing process it is necessary to add some technical parameters of the specific project system. In this case we are adding one (dns_ip) that is not explicitly in the rule, but can be used to discover the targets.
 
-Esto es así porque dentro del proceso de comprobación de controles de seguridad
-el como se hacen las cosas puede ser relevante en un determinado momento.
-Debido a esto el grafo dinámico usará preferentemente los caminos, para obtener
-los datos, usando los datos que ya posee primero.
+This is so because in the process of checking security controls, how things are done (the exact mechanism used and the confidence of the results) may be relevant at a certain moment.
+Due to this to obtain the data, the dynamic graph built inside Overlord will preferably use the paths it already knows.
 
-# Actores
 
-En este caso tanto el responsable ténico como su equipo están involucrados en
-el proceso. Es necesario inspeccionar los resultados parciales de Overlord para
-distinguir de aquellas posibilidades de obtención de información aquellas que
-son utilizables en el proyecto actual.
+# Actors
 
-Es de este proceso de revisión de donde se puede consultar que parámetros extra
-se pueden proveer para que Overlord compruebe de una u otra forma. 
+In this case, both the technical manager and his team are involved in the process. It may be necessary to manage the partial results of Overlord to distinguish from those possibilities of obtaining information those that fit in the current project.
 
-En este proceso de selección es posible que los responables de auditoría y
-seguridad puedan aportar su perspectiva de que nivel de comprobación es
-adecuado.
+It is from this review process that you can decide what extra parameters should be provided to Overlord to check the control in one way or another.
 
-También pueden ver en el log como se ha llevado a cabo la comprobación sin
-necesidad de convenirla previamente; de forma que se conserve el principio de
-federación de Overlord.
+They can also see in the log how the check has been carried out without having to agree to it previously; so that the Overlord’s principle of segregation of concerns will be preserved.
+
 
 {{< /expand >}}
 {{< expand "+Hash" "" "blue">}}
 
 ```
 => Rationale
-The communications with user must be secure  
+PCI DSS 4.1 Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks.
 => Rule  
 All ($url) must have (g$tls_version) >= (ch$version)  
 == rule id  
@@ -201,21 +167,16 @@ dns_ip = 1.2.3.4
 20038dd2edf3e8b8673d0e6c5e13b142bf81a88cde9a1c404f4ba3fb75ade4c1
 ```
 
-En este caso el identificador del proceso de targeting incluye el parámetro
-técnico. Este cambiará en el caso de que el servidor dns asociado a este
-proceso particular cambie. Overlord refuerza la transparencia siempre que es
-posible.
+In this case the identifier of the targeting process includes the technical parameter. This will change in case the DNS server associated with this particular process changes. Overlord reinforces transparency whenever possible.
 
-En el caso de que no sea relevante simplemente podemos hacer referencia al
-identificador del nivel superior y de esa forma no tendremos notificaciones
-cada vez que cambie un detalle del entorno.
+If it is not relevant, we can simply refer to the identifier of the upper level and that way we will not have notifications every time a detail of the environment changes.
 
 {{< /expand >}}
-{{< expand "Ejecución" "" "">}}
+{{< expand "Execution" "" "">}}
 
 ```
 => Rationale
-The communications with user must be secure  
+PCI DSS 4.1 Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks.
 => Rule  
 All ($url) must have (g$tls_version) >= (ch$version)  
 == rule id  
@@ -231,26 +192,23 @@ dns_ip = 1.2.3.4
 <= cli params
 url = [one.com, two.com]
 ```
+For the execution we need to provide to the rule the rest of the required parameters. In this case, the domain names we want to test.
 
-Para la ejecución podemos proveer a la regla del resto de parámetros
-necesarios. En este caso los nombres de dominio implicados en el test del
-control.
+# Actors
 
-# Actores
+In this case, those in charge of executing the testing code, either manually or automatically. They can include the following profiles:
 
-En este caso los encargados de la ejecución del código de comprobación, ya sea
-de forma manual o automatizada. Pueden incluir los siguientes perfiles: 
+ * Developers interested in improving code security
+ * Auditors who want to check the status of a control
+ * Security and risk analysts or operators who want to check the status of a control
 
- * Desarrolladores interesados en mejorar la seguridad del código
- * Auditores que quieran comprobar el estado de un control
- * Expertos en seguridad que quieran comprobar el estados de un control
 
 {{< /expand >}}
 {{< expand "+Hash" "" "blue">}}
 
 ```
 => Rationale
-The communications with user must be secure  
+PCI DSS 4.1 Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks.
 => Rule  
 All ($url) must have (g$tls_version) >= (ch$version)  
 == rule id  
@@ -269,15 +227,15 @@ url = [one.com, two.com]
 26b67743880b9bc6cbdbe66d51abd2d8846822bf7325d2e2bef08c611a6023d5
 ```
 
-De nuevo el identificador contiene los parámetros de la ejecución de forma que
-no se puedan cambiar las condiciones de ejecución sin que este cambie
+Again, the identifier hash includes the execution parameters so that the execution conditions cannot be changed without it changing
+
 
 {{< /expand >}}
-{{< expand "Resultado" "" "">}}
+{{< expand "Result" "" "">}}
 
 ```
 => Rationale
-The communications with user must be secure  
+PCI DSS 4.1 Use strong cryptography and security protocols to safeguard sensitive cardholder data during transmission over open, public networks.  
 => Rule  
 All ($url) must have (g$tls_version) >= (ch$version)  
 == rule id  
@@ -307,30 +265,21 @@ All Rules OK
 c04a56d97f7e8e6d506e15c9d37ef45849fdb90a06d6b21d8d41b6516adfc67b
 ```
 
-En el paso final, usando el grafo dinámico, seguimos los siguientes pasos: 
+In the final step, using the dynamic graph built by Overlord, we follow the following steps:
 
- * En primer lugar estamos ejecutando código que haciendo uso de
-   la herramienta "DNSMask" resolverá las url usando un determinado servidor DNS
-   (pasado como parámetro en el bloque "Target Block"). 
- * Luego se usa la herramienta de análisis de ssl y se extrae la propiedad
-   buscada (tls_version).
- * Se expande la regla con esta información.
- * Se evalua
+ * First of all we are executing code that, using the "DNSMask" tool, will resolve the urls using a specific DNS server (passed as a parameter in the "Target Block"). 
+ * Then the ssl analysis tool is used and the searched property is extracted (tls_version).
+ * The rule is expanded with this information.
+ * Rule is evaluated
 
-De esta forma obtenemos un "All Rules OK". Nuestro control esta funcionando.
+In this way we obtain an "All Rules OK". Our control is working.
 
-Adicionalmente podemos ver que se ha generado un nuevo hash, que incluye datos
-de todo lo anterior.
+Finally, we can see that a new hash has been generated, which includes data from all of the previous steps.
 
-# Actores
+# Actors
 
-El resultado de la ejecución es algo interesa a todos los implicados en el
-proceso. En este caso el hash además incluye la hora del sistema para que
-evitar que se reutilizen resultados anteriores. O para usar los resultados
-cacheados si la caducidad de la regla esta establecida (no en este ejemplo).
+The result of the execution is something interesting to all those involved in the process. In this case, the final hash also includes the system time to prevent previous results from being reused. Or to use cached intermediate results if a rule expiration is set (not in this example).
 
-Los bloques de código ejecutados son creados por los desarrolladores, si es que
-no existen ya. Es una responsabilidad compartida el elegir que trozos de código
-se cargan en Overlord.
+If some of the final (atomic) testing code doesn’t exist yet (dns_mask_tool or ssl_tools in this example), it must be designed, coded and ideally open sourced. Who and how the tools are selected and vetted is a responsibility of the organization, Overlord provides total transparency and audit to automate the trust in the final result.
 
 {{< /expand >}}
