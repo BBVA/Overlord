@@ -4,7 +4,7 @@ date: 2021-10-26T12:14:39+02:00
 draft: true
 ---
 
-En el este caso de la ejecución de una regla completa podemos ver el proceso de
+En el caso de la ejecución de una regla completa podemos ver el proceso de
 abstracción completo desde la regla más general, llegando a un trozo de código
 ejecutado.
 
