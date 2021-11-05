@@ -14,6 +14,8 @@ main:
             ref: "/overview/actors/programmer"
           - name: "Security Risk Manager"
             ref: "/overview/actors/srm"
+          - name: "Rule Creator"
+            ref: "/overview/actors/ruler"
   - name: DroneTown
     ref: "/dronetown"
     sub:
