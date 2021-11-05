@@ -128,7 +128,7 @@ All ($url) must have (g$tls_version) >= (ch$version)
 03669a7dfefe38399e193ca8455b7bc92a62b83fdf1991922234acbcde9f04c5  
 => Check Block  
 version = 1.3  
-== rule id
+== check id
 b125b13bfb29e13c2e4b9ed4d491c1656ccf693c9959b1517908399e82ba8779
 ```
 
@@ -147,16 +147,16 @@ All ($url) must have (g$tls_version) >= (ch$version)
 03669a7dfefe38399e193ca8455b7bc92a62b83fdf1991922234acbcde9f04c5  
 => Check Block  
 version = 1.3  
-== rule id  
+== check id  
 b125b13bfb29e13c2e4b9ed4d491c1656ccf693c9959b1517908399e82ba8779  
 => Target Block  
 dns_ip = 1.2.3.4  
 ```
 
 Dentro del proceso de testing de riesgos es necesario agregar algunos
-parámetros técnicos del proyecto concreto. En este caso estamos agregando uno
-que no esta explícitamente en la regla, de forma que el grafo dinámico priorice
-los caminos que usan esta información.
+parámetros técnicos del proyecto concreto. En este caso estamos agregando un
+parámetro que no esta explícitamente en la regla, de forma que el Overlord
+priorice los caminos que usan esta información.
 
 Esto es así porque dentro del proceso de comprobación de controles de seguridad
 el como se hacen las cosas puede ser relevante en un determinado momento.
@@ -193,11 +193,11 @@ All ($url) must have (g$tls_version) >= (ch$version)
 03669a7dfefe38399e193ca8455b7bc92a62b83fdf1991922234acbcde9f04c5  
 => Check Block  
 version = 1.3  
-== rule id  
+== check id  
 b125b13bfb29e13c2e4b9ed4d491c1656ccf693c9959b1517908399e82ba8779  
 => Target Block  
 dns_ip = 1.2.3.4  
-== rule id  
+== target id  
 20038dd2edf3e8b8673d0e6c5e13b142bf81a88cde9a1c404f4ba3fb75ade4c1
 ```
 
@@ -222,11 +222,11 @@ All ($url) must have (g$tls_version) >= (ch$version)
 03669a7dfefe38399e193ca8455b7bc92a62b83fdf1991922234acbcde9f04c5  
 => Check Block  
 version = 1.3  
-== rule id  
+== check id  
 b125b13bfb29e13c2e4b9ed4d491c1656ccf693c9959b1517908399e82ba8779  
 => Target Block  
 dns_ip = 1.2.3.4  
-== rule id  
+== target id  
 20038dd2edf3e8b8673d0e6c5e13b142bf81a88cde9a1c404f4ba3fb75ade4c1
 <= cli params
 url = [one.com, two.com]
@@ -257,11 +257,11 @@ All ($url) must have (g$tls_version) >= (ch$version)
 03669a7dfefe38399e193ca8455b7bc92a62b83fdf1991922234acbcde9f04c5  
 => Check Block  
 version = 1.3  
-== rule id  
+== check id  
 b125b13bfb29e13c2e4b9ed4d491c1656ccf693c9959b1517908399e82ba8779  
 => Target Block  
 dns_ip = 1.2.3.4  
-== rule id  
+== target id  
 20038dd2edf3e8b8673d0e6c5e13b142bf81a88cde9a1c404f4ba3fb75ade4c1
 <= cli params
 url = [one.com, two.com]
@@ -284,14 +284,16 @@ All ($url) must have (g$tls_version) >= (ch$version)
 03669a7dfefe38399e193ca8455b7bc92a62b83fdf1991922234acbcde9f04c5  
 => Check Block  
 version = 1.3  
-== rule id  
+== check id  
 b125b13bfb29e13c2e4b9ed4d491c1656ccf693c9959b1517908399e82ba8779  
 => Target Block  
 dns_ip = 1.2.3.4  
-== rule id  
+== target id  
 20038dd2edf3e8b8673d0e6c5e13b142bf81a88cde9a1c404f4ba3fb75ade4c1
 <= cli params
 url = [one.com, two.com]
+== execution id
+26b67743880b9bc6cbdbe66d51abd2d8846822bf7325d2e2bef08c611a6023d5
 == Execution path
 dns_mask_tool
 ssl_tools
