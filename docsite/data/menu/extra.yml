@@ -8,7 +8,3 @@ header:
     ref: /en/
     icon: en
     external: true
-  - name: Us
-    ref: /en/
-    icon: us
-    external: true

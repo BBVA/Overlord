@@ -2,7 +2,7 @@
 main:
   - name: Intro
     ref: "/intro"
-  - name: Overvieew
+  - name: Overview
     ref: "/overview"
     sub:
       - name: Rules
@@ -12,6 +12,8 @@ main:
         sub:
           - name: Programmer
             ref: "/overview/actors/programmer"
+          - name: "Security Risk Manager"
+            ref: "/overview/actors/srm"
   - name: DroneTown
     ref: "/dronetown"
     sub:
