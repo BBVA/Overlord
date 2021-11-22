@@ -2,3 +2,4 @@
 logs
 .devcontainer
 public/
+docsite/.hugo_build.lock
