@@ -4,117 +4,53 @@ date: 2021-10-29T11:52:55+02:00
 draft: true
 ---
 
-Desde la perspectiva de un programador la idea de herramienta universal puede
-sonar disparatada. Estamos acostumbrados a enfrentarnos al software como un
-todo que debe resolver el problema; aunque los microservicios esten cambiando
-esta tendencia poco a poco.
+From a programmer's perspective the idea of a universal tool may sound crazy. We are used to dealing with software as a whole that must solve the problem; although microservices are changing this trend slowly.
 
-Pero Overlord no es algo que se pueda "resolver" globalmente. Necesitamos una
-aproximación inteligente, modular y extensible. Como un sistema operativo o un
-compilador.
+But the automatic search for paths and ancillary information that Overlord needs so that it can be developed independently is not something that can be "solved" globally. We need a smart, modular and extensible approach. Like an operating system or a compiler.
 
-Como programador Overlord necesitará de pequeños trozos de código para poder
-llevar a cabo sus tareas de recopilación de información. En estos casos cada
-trozo de código debe tener dos partes, la consultiva y la ejecutiva.
+Overlord will need small pieces of code in order to carry out its information gathering tasks. In these cases, each piece of code must have two parts, gathering and execution.
 
-## Consultando
+## Gathering
 
-Cuando creamos código para Overlord este necesita un interfaz para saber que
-datos le podemos pedir. Esto se declara en los metadatos de registro del trozo de
-código; si por ejemplo necesitamos nuestro codigo provee de pan asi lo 
-declararemos.
+When we create code for Overlord it needs an interface to know what data we can ask for. This is declared in the atomic code registry metadata; if for example we need our code to provide bread, we will declare it so.
 
 {{< vid "/programmer/query.mp4" >}}
 
-Las propiedades tienen espacio de nombre (net) es simplemente porque Overlord
-puede entender la ip en muchos contextos. Por ejemplo, puede ser una ip de AWS,
-la propiedad en ese caso debería llamarse algo parecido a "ip.aws.com". No te
-preocupes mucho por el nombre ahora, no necesita una entidad central que asigne
-nombres, aunque los nombres los pones tu fijarse en la comunidad puede ser muy
-ventajoso.
+Properties have namespace (eg ip.net) simply because Overlord can understand IP in many contexts. For example, it could be an AWS IP, the property in that case could be called something like "ip.aws.com". Don't worry too much about the name now, you don't need a central entity to assign names. Although the names are up to you, looking at the community can be very advantageous.
 
-Ahora que Overlord sabe que puedes ofrecer al sistema te enviará peticiones con
-un conjunto de propiedades, por ejemplo, una mascara de red, un nombre de
-dominio y otras cosas. Ten en cuenta que recibiras todas las propiedades
-posibles, no solo las que te interesen a ti. Si con estas propiedades puedes
-recopilar la información, tu código le podrá pasar el nombre completo de la
-propiedad que provees, y ya has terminado la parte consultiva.
+Now that Overlord knows what you can offer, the system will send you requests with a set of properties, for example a netmask, a domain name and other things. Keep in mind that you will receive all possible properties, not just the ones that interest you. If with these properties you can collect the information, your code will be able to pass the full name of the property you provide, and you have finished the gathering step.
 
 {{< vid "/programmer/resolved.mp4" >}}
 
-En el caso de que no puedas proveer de esa información porque te faltan
-propiedades, deberás devolver que propiedades necesitas para llevar a cabo tu
-tarea. Y estas pueden ser muchas, ya que puedes llevar a cabo tu tarea de
-diferentes formas.
+In the event that you cannot provide that information because there are missing parameters, you will have to return what properties you need to carry out your task. And these can be many, since you can carry out your task in different ways.
 
 {{< vid "/programmer/partial.mp4" >}}
 
-Una capacidad diferenciadora de los grafos tradiciones es que el código atómico
-de consulta puede gestionar como considere una petición entrante. No se espera
-de el que de siempre la misma respuesta, esta puede estar basada en el entorno
-que ocupa. Pero si que se espera que de siempre la misma respuesta en el código
-ejecutivo. Esto permite tener una gran flexibilidad frente a casos que todavía
-no conocemos.
+A relevant feature with respect to traditional graphs is that the gathering atomic code can manage how to consider an incoming request. It is not expected to always provide the same answer, this can be based on multiple factors, in fact that is why it is "dynamic". The code is expected to always have the same output, but it must be flexible on input. This allows us to have great flexibility for cases we do not yet know about.
 
-Por ejemplo, en lugar de responder siempre, necesito agua, harina y sal para
-hacer pasta, puede que el peticionario lleve productos frescos entre sus
-propiedades. El código de consulta puede decidir agregar huevos a la lista de
-requisitos para entregar pasta fresca en lugar de pasta seca normal.
+Also with the same parameters, but different user, we can require different things. If the query, for example, is made by the system administrator, we do not require any additional permission. If, on the other hand, an anonymous user makes the same query, we can require an additional authentication parameter to the system.
 
-También ante las mismas propiedades, pero diferente usuario, podemos requerir
-otras cosas. Si entra, por ejemplo, el dueño de la tienda, no le cobraremos
-nada por el servicio. Por otro lado si entra un espia (sin permisos en el
-sistema objetivo) podemos exigirle que pase antes por comisaría a ver si esta
-autorizado a llevarse la receta secreta para la pasta.
+## Executing
 
-## Ejecutando
-
-Cuando Overlord invoca el código ejecutivo te dará, de nuevo y de forma
-simétrica al anterior caso, todas las propiedades que posee en ese momento.
-Entre estas seguro que está la forma de conseguir la información. Queda en tu
-mano decidir que va a pasar, si puedes conseguir la información de más de una
-forma.
+When Overlord invokes the execution code, it will receive, again and symmetrically to the previous case, all the parameters it has at that time. Among these, surely there is a way to get the information. If you can get the information in more than one way, it is up to you to decide how it will be executed to achieve your goal.
 
 {{< vid "/programmer/execution.mp4" >}}
 
-Después de ejecutar tu código le entragarás la información a Overlord. Así de
-simple (seguramente mediante un API de intercambio por decidir todavía, pero
-siempre de la forma más aislada posible para no introducir dependencias en el
-código atómico)
+Once the code is executed, it will deliver the result to Overlord. It's that simple (probably through an exchange API to be decided, but always as isolated as possible to don’t introduce dependencies in the atomic code)
 
-# Poninedo el proceso en perspectiva
+# Putting the process in perspective
 
-Este proceso parece bastante sencillo, pero hay que tener en cuenta que la
-mayoría de los procesos se basan en entrada y salida de datos; por complejos
-que sean. Usando estos pequeños códigos Overlord es capaz de componer
-soluciones de mucha complejidad.
+This process seems pretty straightforward, but using these small pieces of code (that can themselves invoque more complex applications like SAST), Overlord is able to compose highly complex solutions.
 
-En ocasiones te sentirás tentado a crear grandes piezas de código, pero a no
-ser que quieras optimizar una ejecución que le esta llevando mucho tiempo a
-Overlord te recomendamos manter las cosas lo más simples posible para ti.
+# Added Value
 
-# Valor Aportado
+Through its checks Overlord can be a general checking framework for your own code. It does not have to be used only in a business environment, nor is it a tool that requires large amounts of infrastructure. We want to keep it simple so it can be used standalone and offer a comprehensive testing capability.
 
-Overlord a través de sus comprobaciones puede ser un framework de comprobación
-de infinidad de cosas en tu código. No tiene porque usarse a nivel empresarial,
-ni es una herramienta que requiera de grandes cantidades de infraestructura.
-Queremos mantenerla simple para que se pueda usar en solitario y ofrecer una
-capacidad de testing más exaustiva.
+We know that there are "Property based testing" frameworks, and maybe you are very comfortable with them. They may even offer better abstractions for you. But keep two things in mind:
 
-Sabemos que hay frameworks de "Property based testing", y seguramente te
-encuentres muy cómodo con ellos. Incluso es posible que te oferzcan mejores
-abstracciones para ti. Pero ten en cuenta dos cosas:
+  * When you write code for Overlord you contribute to a community beyond your test case.
+  * If that framework is so good, you can integrate it into Overlord! and thus contribute to a larger community.
 
- * Cuando creas código para Overlord aportas a una comunidad más allá de tu
-   caso de testing.
- * Si ese framework es tan bueno ¡puedes integrarlo en Overlord! y aportar así
-   a una comunidad más grande.
+We try to keep the integration effort as low as possible, adding value at a low cost.
 
-Intentamos que el esfuezo de integración sea lo menor posible, para que ese
-valor aportado tenga un coste bajo.
-
-Además de comprobar controles de seguridad puedes usar las abstracciones de
-Overlord como herramientas. Creemos que el grafo dinámico puede adaptarse una
-cantidad ingente de casos, incluso en entornos de alta incertidumbre. Siempre
-que el tiempo que necesites para obtener una respuesta no sea crítico Overlord
-puede ser una solución muy flexible.
+In addition to checking security controls, you can use the Overlord abstractions as an independent tool. We believe that the dynamic graph can be adapted to a huge number of cases, specially in high uncertainty environments. 
