@@ -1,7 +1,7 @@
 ---
 title: "Ruler"
 date: 2021-11-05T12:34:51+01:00
-draft: true
+draft: false
 ---
 
 The rule creation process for Overlord is fairly straightforward, but requires an understanding of the rules-specific DSL. The creator of Rules is the Overlord user who understands security problems and wants to add value by designing generic tests on controls (what needs to be verified).

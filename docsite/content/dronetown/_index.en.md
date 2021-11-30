@@ -1,7 +1,7 @@
 ---
 title: "Dronetown"
 date: 2021-10-28T09:05:40+02:00
-draft: true
+draft: false
 ---
 
 DroneTown is a support metaphor to help to understand Overlord system needs, because its level of abstraction can cause uncertainty in the implementation details.

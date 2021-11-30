@@ -1,7 +1,7 @@
 ---
 title: "Dronetown"
 date: 2021-10-28T09:05:40+02:00
-draft: true
+draft: false
 ---
 
 Esta es una metáfora de soporte para ayudar a la compresión del sistema

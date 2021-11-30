@@ -1,7 +1,7 @@
 ---
 title: "Security Risk Manager"
 date: 2021-11-03T11:40:50+01:00
-draft: true
+draft: false
 ---
 
 El Security Risk Manager se centra en el modelado de amenazas, los riesgos y

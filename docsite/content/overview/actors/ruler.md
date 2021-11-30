@@ -1,7 +1,7 @@
 ---
 title: "Creador de Reglas"
 date: 2021-11-05T12:34:46+01:00
-draft: true
+draft: false
 ---
 
 El proceso de creación de reglas para Overlord es bastante sencillo, pero requiere de entendimiento del DSL específico para reglas. El creador de Reglas es aquel usuario de Overlord que entiende los problemas de seguridad y quiere aportar valor diseñando tests genéricos sobre controles (qué hay que verificar).

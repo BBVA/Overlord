@@ -1,7 +1,7 @@
 ---
 title: "Rules"
 date: 2021-10-26T12:14:39+02:00
-draft: true
+draft: false
 ---
 
 In the case of the execution of a complete rule, we can see the complete abstraction process from the most general rule to the piece of code finally executed.

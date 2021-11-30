@@ -1,7 +1,7 @@
 ---
 title: "Programmer"
 date: 2021-10-29T11:52:55+02:00
-draft: true
+draft: false
 ---
 
 Desde la perspectiva de un programador la idea de herramienta universal puede sonar disparatada. Estamos acostumbrados a enfrentarnos al software como un todo que debe resolver el problema; aunque los microservicios estén cambiando esta tendencia poco a poco.

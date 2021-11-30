@@ -1,7 +1,7 @@
 ---
 title: "Rules"
 date: 2021-10-26T12:14:39+02:00
-draft: true
+draft: false
 ---
 
 En el caso de la ejecución de una regla completa podemos ver el proceso de
