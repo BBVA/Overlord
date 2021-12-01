@@ -1,6 +1,7 @@
 languageCode = 'es-es'
 title = 'Overlord'
 defaultContentLanguage = 'es'
+baseURL = 'https://bbva.github.io/Overlord'
 
 theme = 'geekdoc'
 
