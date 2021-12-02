@@ -4,11 +4,6 @@ date: 2021-10-28T09:05:26+02:00
 draft: false
 ---
 
-En esta sección de documentación vamos a intentar dar una persepectiva desde
-puntos de vista más familiares a los usuarios que se pueden beneficiar de
-Overlord.
+In this documentation section we are going to give a perspective from different points of view familiar to users who can benefit from Overlord.
 
-Al ser una herramienta que abarca un escenario universal nos hemos dado cuenta
-que los usuarios tienden a verla desde su punto de vista, y les cuestra un poco
-dar el paso universal. Debido a esto usaremos un escenario familiar y luego
-expandiremos esa persepectiva para intentar describir Overlord.
+Being a tool that covers a universal scenario, we have realized that users tend to see it from their personal point of view, and it is a bit difficult for them to take the "universal" step. Because of this we will use a familiar scenario and then expand that perspective to try to describe Overlord.
