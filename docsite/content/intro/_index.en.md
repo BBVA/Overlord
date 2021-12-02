@@ -6,7 +6,6 @@ draft: false
 
 # Overlord
 
-Overlord es una implementación de ejemplo de la iniciativa SUSTO.
+Overlord is a sample implementation of the SUSTO initiative.
 
-Overlord plantea una solución válida al testing de seguridad universal y
-sistemático dentro de las empresas modernas.
+Overlord offers a PoC solution to universal and systematic security testing.
