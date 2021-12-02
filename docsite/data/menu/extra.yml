@@ -1,10 +1,10 @@
 ---
 header:
   - name: Es
-    ref: /
+    ref: /Overlord/
     icon: es
     external: true
   - name: En
-    ref: /en/
+    ref: /Overlord/en/
     icon: en
     external: true

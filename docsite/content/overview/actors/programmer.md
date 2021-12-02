@@ -14,17 +14,17 @@ Overlord necesitará de pequeños trozos de código para poder llevar a cabo sus
 
 Cuando creamos código para Overlord este necesita un interfaz para saber qué datos le podemos pedir. Esto se declara en los metadatos de registro del trozo de código; si por ejemplo necesitamos que nuestro código provea de pan, así lo declararemos.
 
-{{< vid "/programmer/query.mp4" >}}
+{{< vid "/Overlord/programmer/query.mp4" >}}
 
 Las propiedades tienen espacio de nombre (por ejemplo ip.net) simplemente porque Overlord puede entender la ip en muchos contextos. Por ejemplo, puede ser una ip de AWS, la propiedad en ese caso debería llamarse algo parecido a "ip.aws.com". No te preocupes mucho por el nombre ahora, no necesita una entidad central que asigne nombres. Aunque los nombres los pones tú, fijarse en la comunidad puede ser muy ventajoso.
 
 Ahora que Overlord sabe qué puedes ofrecer, el sistema te enviará peticiones con un conjunto de propiedades, por ejemplo, una máscara de red, un nombre de dominio y otras cosas. Ten en cuenta que recibirás todas las propiedades posibles, no solo las que te interesen a ti. Si con estas propiedades puedes recopilar la información, tu código le podrá pasar el nombre completo de la propiedad que provees, y ya has terminado la parte consultiva.
 
-{{< vid "/programmer/resolved.mp4" >}}
+{{< vid "/Overlord/programmer/resolved.mp4" >}}
 
 En el caso de que no puedas proveer de esa información porque te faltan parámetros, deberás devolver qué propiedades necesitas para llevar a cabo tu tarea. Y estas pueden ser muchas, ya que puedes llevar a cabo tu tarea de diferentes formas.
 
-{{< vid "/programmer/partial.mp4" >}}
+{{< vid "/Overlord/programmer/partial.mp4" >}}
 
 Una capacidad diferenciadora respecto a los grafos tradicionales es que el código atómico de consulta puede gestionar como considerar una petición entrante. No se espera de él que proporcione siempre la misma respuesta, esta puede estar basada en múltiples factores, de hecho por eso es “dinámico”. Se espera del código que tenga siempre la misma salida, pero debe ser flexible en la entrada. Esto permite tener una gran flexibilidad frente a casos que todavía no conocemos.
 
@@ -35,7 +35,7 @@ También ante los mismos parámetros, pero diferente usuario, podemos requerir o
 
 Cuando Overlord invoca el código ejecutivo este recibirá, de nuevo y de forma simétrica al anterior caso, todos los parámetros que posee en ese momento. Entre éstas, seguro que está la forma de conseguir la información. Si puedes conseguir la información de más de una forma, queda en tu mano decidir cómo se ejecutará para conseguir su objetivo.
 
-{{< vid "/programmer/execution.mp4" >}}
+{{< vid "/Overlord/programmer/execution.mp4" >}}
 
 Una vez ejecutado el código éste entregará el resultado a Overlord. Así de simple (seguramente mediante un API de intercambio por decidir todavía, pero siempre de la forma más aislada posible para no introducir dependencias en el código atómico)
 

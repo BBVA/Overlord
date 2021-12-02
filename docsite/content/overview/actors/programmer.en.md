@@ -14,17 +14,17 @@ Overlord will need small pieces of code in order to carry out its information ga
 
 When we create code for Overlord it needs an interface to know what data we can ask for. This is declared in the atomic code registry metadata; if for example we need our code to provide bread, we will declare it so.
 
-{{< vid "/programmer/query.mp4" >}}
+{{< vid "/Overlord/programmer/query.mp4" >}}
 
 Properties have namespace (eg ip.net) simply because Overlord can understand IP in many contexts. For example, it could be an AWS IP, the property in that case could be called something like "ip.aws.com". Don't worry too much about the name now, you don't need a central entity to assign names. Although the names are up to you, looking at the community can be very advantageous.
 
 Now that Overlord knows what you can offer, the system will send you requests with a set of properties, for example a netmask, a domain name and other things. Keep in mind that you will receive all possible properties, not just the ones that interest you. If with these properties you can collect the information, your code will be able to pass the full name of the property you provide, and you have finished the gathering step.
 
-{{< vid "/programmer/resolved.mp4" >}}
+{{< vid "/Overlord/programmer/resolved.mp4" >}}
 
 In the event that you cannot provide that information because there are missing parameters, you will have to return what properties you need to carry out your task. And these can be many, since you can carry out your task in different ways.
 
-{{< vid "/programmer/partial.mp4" >}}
+{{< vid "/Overlord/programmer/partial.mp4" >}}
 
 A relevant feature with respect to traditional graphs is that the gathering atomic code can manage how to consider an incoming request. It is not expected to always provide the same answer, this can be based on multiple factors, in fact that is why it is "dynamic". The code is expected to always have the same output, but it must be flexible on input. This allows us to have great flexibility for cases we do not yet know about.
 
@@ -34,7 +34,7 @@ Also with the same parameters, but different user, we can require different thin
 
 When Overlord invokes the execution code, it will receive, again and symmetrically to the previous case, all the parameters it has at that time. Among these, surely there is a way to get the information. If you can get the information in more than one way, it is up to you to decide how it will be executed to achieve your goal.
 
-{{< vid "/programmer/execution.mp4" >}}
+{{< vid "/Overlord/programmer/execution.mp4" >}}
 
 Once the code is executed, it will deliver the result to Overlord. It's that simple (probably through an exchange API to be decided, but always as isolated as possible to don’t introduce dependencies in the atomic code)
 
