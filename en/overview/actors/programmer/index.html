@@ -50,11 +50,11 @@ But the automatic search for paths and ancillary information that Overlord needs
 <div class=gdoc-menu-header>
 <span class=gdoc-menu-header__items>
 <span>
-<a href=/ class=gdoc-header__link><svg class="icon es"><title>Es</title><use xlink:href="#es"/></svg>
+<a href=/Overlord/ class=gdoc-header__link><svg class="icon es"><title>Es</title><use xlink:href="#es"/></svg>
 </a>
 </span>
 <span>
-<a href=/en/ class=gdoc-header__link><svg class="icon en"><title>En</title><use xlink:href="#en"/></svg>
+<a href=/Overlord/en/ class=gdoc-header__link><svg class="icon en"><title>En</title><use xlink:href="#en"/></svg>
 </a>
 </span>
 <span id=gdoc-dark-mode><svg class="icon gdoc_brightness_dark"><title>Toggle Dark/Light/Auto mode</title><use xlink:href="#gdoc_brightness_dark"/></svg><svg class="icon gdoc_brightness_light"><title>Toggle Dark/Light/Auto mode</title><use xlink:href="#gdoc_brightness_light"/></svg><svg class="icon gdoc_brightness_auto"><title>Toggle Dark/Light/Auto mode</title><use xlink:href="#gdoc_brightness_auto"/></svg>
@@ -196,18 +196,18 @@ Gathering
 </h2>
 </div><p>When we create code for Overlord it needs an interface to know what data we can ask for. This is declared in the atomic code registry metadata; if for example we need our code to provide bread, we will declare it so.</p>
 <video width=100% controls autoplay loop>
-<source src=/programmer/query.mp4 type=video/mp4>
+<source src=/Overlord/programmer/query.mp4 type=video/mp4>
 Your browser does not support the video tag.
 </video>
 <p>Properties have namespace (eg ip.net) simply because Overlord can understand IP in many contexts. For example, it could be an AWS IP, the property in that case could be called something like &ldquo;ip.aws.com&rdquo;. Don&rsquo;t worry too much about the name now, you don&rsquo;t need a central entity to assign names. Although the names are up to you, looking at the community can be very advantageous.</p>
 <p>Now that Overlord knows what you can offer, the system will send you requests with a set of properties, for example a netmask, a domain name and other things. Keep in mind that you will receive all possible properties, not just the ones that interest you. If with these properties you can collect the information, your code will be able to pass the full name of the property you provide, and you have finished the gathering step.</p>
 <video width=100% controls autoplay loop>
-<source src=/programmer/resolved.mp4 type=video/mp4>
+<source src=/Overlord/programmer/resolved.mp4 type=video/mp4>
 Your browser does not support the video tag.
 </video>
 <p>In the event that you cannot provide that information because there are missing parameters, you will have to return what properties you need to carry out your task. And these can be many, since you can carry out your task in different ways.</p>
 <video width=100% controls autoplay loop>
-<source src=/programmer/partial.mp4 type=video/mp4>
+<source src=/Overlord/programmer/partial.mp4 type=video/mp4>
 Your browser does not support the video tag.
 </video>
 <p>A relevant feature with respect to traditional graphs is that the gathering atomic code can manage how to consider an incoming request. It is not expected to always provide the same answer, this can be based on multiple factors, in fact that is why it is &ldquo;dynamic&rdquo;. The code is expected to always have the same output, but it must be flexible on input. This allows us to have great flexibility for cases we do not yet know about.</p>
@@ -220,7 +220,7 @@ Executing
 </h2>
 </div><p>When Overlord invokes the execution code, it will receive, again and symmetrically to the previous case, all the parameters it has at that time. Among these, surely there is a way to get the information. If you can get the information in more than one way, it is up to you to decide how it will be executed to achieve your goal.</p>
 <video width=100% controls autoplay loop>
-<source src=/programmer/execution.mp4 type=video/mp4>
+<source src=/Overlord/programmer/execution.mp4 type=video/mp4>
 Your browser does not support the video tag.
 </video>
 <p>Once the code is executed, it will deliver the result to Overlord. It&rsquo;s that simple (probably through an exchange API to be decided, but always as isolated as possible to don’t introduce dependencies in the atomic code)</p>

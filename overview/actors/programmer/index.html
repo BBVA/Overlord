@@ -50,11 +50,11 @@ Pero la búsqueda automática de caminos e información auxiliar que necesita Ov
 <div class=gdoc-menu-header>
 <span class=gdoc-menu-header__items>
 <span>
-<a href=/ class=gdoc-header__link><svg class="icon es"><title>Es</title><use xlink:href="#es"/></svg>
+<a href=/Overlord/ class=gdoc-header__link><svg class="icon es"><title>Es</title><use xlink:href="#es"/></svg>
 </a>
 </span>
 <span>
-<a href=/en/ class=gdoc-header__link><svg class="icon en"><title>En</title><use xlink:href="#en"/></svg>
+<a href=/Overlord/en/ class=gdoc-header__link><svg class="icon en"><title>En</title><use xlink:href="#en"/></svg>
 </a>
 </span>
 <span id=gdoc-dark-mode><svg class="icon gdoc_brightness_dark"><title>Toggle Dark/Light/Auto mode</title><use xlink:href="#gdoc_brightness_dark"/></svg><svg class="icon gdoc_brightness_light"><title>Toggle Dark/Light/Auto mode</title><use xlink:href="#gdoc_brightness_light"/></svg><svg class="icon gdoc_brightness_auto"><title>Toggle Dark/Light/Auto mode</title><use xlink:href="#gdoc_brightness_auto"/></svg>
@@ -196,18 +196,18 @@ Consultando
 </h2>
 </div><p>Cuando creamos código para Overlord este necesita un interfaz para saber qué datos le podemos pedir. Esto se declara en los metadatos de registro del trozo de código; si por ejemplo necesitamos que nuestro código provea de pan, así lo declararemos.</p>
 <video width=100% controls autoplay loop>
-<source src=/programmer/query.mp4 type=video/mp4>
+<source src=/Overlord/programmer/query.mp4 type=video/mp4>
 Your browser does not support the video tag.
 </video>
 <p>Las propiedades tienen espacio de nombre (por ejemplo ip.net) simplemente porque Overlord puede entender la ip en muchos contextos. Por ejemplo, puede ser una ip de AWS, la propiedad en ese caso debería llamarse algo parecido a &ldquo;ip.aws.com&rdquo;. No te preocupes mucho por el nombre ahora, no necesita una entidad central que asigne nombres. Aunque los nombres los pones tú, fijarse en la comunidad puede ser muy ventajoso.</p>
 <p>Ahora que Overlord sabe qué puedes ofrecer, el sistema te enviará peticiones con un conjunto de propiedades, por ejemplo, una máscara de red, un nombre de dominio y otras cosas. Ten en cuenta que recibirás todas las propiedades posibles, no solo las que te interesen a ti. Si con estas propiedades puedes recopilar la información, tu código le podrá pasar el nombre completo de la propiedad que provees, y ya has terminado la parte consultiva.</p>
 <video width=100% controls autoplay loop>
-<source src=/programmer/resolved.mp4 type=video/mp4>
+<source src=/Overlord/programmer/resolved.mp4 type=video/mp4>
 Your browser does not support the video tag.
 </video>
 <p>En el caso de que no puedas proveer de esa información porque te faltan parámetros, deberás devolver qué propiedades necesitas para llevar a cabo tu tarea. Y estas pueden ser muchas, ya que puedes llevar a cabo tu tarea de diferentes formas.</p>
 <video width=100% controls autoplay loop>
-<source src=/programmer/partial.mp4 type=video/mp4>
+<source src=/Overlord/programmer/partial.mp4 type=video/mp4>
 Your browser does not support the video tag.
 </video>
 <p>Una capacidad diferenciadora respecto a los grafos tradicionales es que el código atómico de consulta puede gestionar como considerar una petición entrante. No se espera de él que proporcione siempre la misma respuesta, esta puede estar basada en múltiples factores, de hecho por eso es “dinámico”. Se espera del código que tenga siempre la misma salida, pero debe ser flexible en la entrada. Esto permite tener una gran flexibilidad frente a casos que todavía no conocemos.</p>
@@ -220,7 +220,7 @@ Ejecutando
 </h2>
 </div><p>Cuando Overlord invoca el código ejecutivo este recibirá, de nuevo y de forma simétrica al anterior caso, todos los parámetros que posee en ese momento. Entre éstas, seguro que está la forma de conseguir la información. Si puedes conseguir la información de más de una forma, queda en tu mano decidir cómo se ejecutará para conseguir su objetivo.</p>
 <video width=100% controls autoplay loop>
-<source src=/programmer/execution.mp4 type=video/mp4>
+<source src=/Overlord/programmer/execution.mp4 type=video/mp4>
 Your browser does not support the video tag.
 </video>
 <p>Una vez ejecutado el código éste entregará el resultado a Overlord. Así de simple (seguramente mediante un API de intercambio por decidir todavía, pero siempre de la forma más aislada posible para no introducir dependencias en el código atómico)</p>
