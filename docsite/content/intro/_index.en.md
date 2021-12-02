@@ -6,6 +6,6 @@ draft: false
 
 # Overlord
 
-Overlord is a sample implementation of the <a href="https://github.com/BBVA/susto"> SUSTO </a> initiative.
+<a href="https://github.com/BBVA/Overlord"> Overlord </a> is a sample implementation of the <a href="https://github.com/BBVA/susto"> SUSTO </a> initiative.
 
 Overlord offers a PoC solution to universal and systematic security testing.
