@@ -1,9 +1,41 @@
+# Overlord components overview
+
+Overlord need to manage a wide and complicated problem. In order to achieve this we split the 
+big problem into smaller pieces.
+
+On a nutshell, from a linear big problem perspecive, the overlord components are:
+
+~~~mermaid
+
+graph LR
+    A(Rule Interpreter) --> B(Rule Parametrizer)
+    B --> C(Rule Executor)
+    C --> D(Function Finder)
+    D --> E(Component executor)
+    E --> F(Rule Result Signer)
+
+~~~
+
+Detailed interactions are provided next.
+
 # Rule Interpreter
 
 ## Input - Output
 A Rule file to check -> A valid Rule File
 
 ## Funcitonal Description
+The Rule DSL must be the simplest it can be. It's objetive is comunicate about an specific control at
+the highest level possible.
+
+Must define "What must be" regarding one or more controls already in place. And cannot allow the user
+specify the little details of "how to" check if control it's there.
+This requirement it's by desing, no for technical reasons. There is a lot of good reasons, but the 
+biggest one is because companies can share the what but no the how they systems are. Another good
+reason is about separation of concerns; the one that write the rules maybe don't know how to check it
+in every technical context.
+
+This piece of software check all the syntax details, offering hints about what are you writing.
+
 ## Implementations Problems
 Finding a generic Rule DSL that describes a security program across industries it's a hard task.
 
@@ -14,18 +46,24 @@ There is two main issues regarding Rule DSL:
 A valid Overlord Rule must avoid this two problems. Rule it's a context free communication tool. So can't
 describe any context detail or describe "how to do" anything.
 
-The Rule primary focus it's the "What must be".
+The Rule primary focus it's the "What must be". And the most important property of the rules is they 
+are inmutable. If anyone can change the rule thru the process the original rule, and their information,\
+will be lost.
 
 ## Solution architecture
-The current DSL proposal describe an state that must be found on a place. Allowing to parametrize the
-specific state and place by parameters.
+The current DSL proposal describe an state that must be found on a place, by example:
+
+> All $(ip@gather) the port $(port@rule) must be on $(closed_ports@gather).
+
+On this example we can see 3 parameters, two of them (ip and closed_ports) must be gathered from your 
+current systems to ensure the control. The other one (port) must be defined before executión, and 
+ideally, come from Thread Model session and control definitión.
+
 
 # Rule Parametrizer
 
 ## Input - Output
-'''
 A valid Rule File, The avaliable typed functions -> Parametrized Rule File
-'''
 
 ## Funcitonal Description
 We understand a Paramatrized Rule File as a Valid Rule File that contains the maximum avaliable information
