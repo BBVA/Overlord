@@ -18,6 +18,8 @@ graph LR
 
 Detailed interactions are provided next.
 
+TODO: Input Outputs are just conceptual proposals.
+
 # Rule Interpreter
 
 ## Input - Output
@@ -125,7 +127,7 @@ function on your context to provide a correct test. This implies to generate sev
 # Function Finder
 
 ## Input - Output
-Program Query -> Program Hint or Program
+Program Query, filtered ammount of fuctions, all available functions -> Program Hint or Program
 
 ## Funcitonal Description
 Most of the time the Function Finder will provide several valid programs. In current state of the solution
@@ -138,7 +140,9 @@ machines understanding security requirements like Trustness of the current check
 on a configuration check than on a hack tool scan.
 
 ## Implementations Problems
-Search among all the avaliable functions can lead us into
+Search among all the avaliable functions can lead us into an complete NP problem. If you think about it
+it's the same problem as the salesman travel problem.
+
 ## Solution architecture
 
 # Rule Result Signer
