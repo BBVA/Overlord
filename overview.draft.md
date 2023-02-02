@@ -71,9 +71,10 @@ A valid Rule File, The avaliable typed functions -> Parametrized Rule File
 We understand a Paramatrized Rule File as a Valid Rule File that contains the maximum avaliable information
 about the Parameters in order to generate a specific sub-set of functions.
 
-Be aware that parametrizing a Rule it's a complete kind of interaction with Overlord. The Rule must remain
-untouched so parametrizer will allways add context and never change the rule itself.
+Be aware that parametrizing a Rule it's a complete kind of interaction with Overlord. You can specify a
+parameter whitout execute it.
 
+The Rule must remain untouched so parametrizer will allways add context and never change the rule itself.
 In order to ensure Rule's inmutability the Parametrization it's a complete separated solution.
 
 ## Implementations Problems
