@@ -78,11 +78,11 @@ The Rule must remain untouched so parametrizer will allways add context and neve
 In order to ensure Rule's inmutability the Parametrization it's a complete separated solution.
 
 ## Implementations Problems
-Keep the same Rule across the different environments on different companies. Rules are thought as a communication's
-tool. Are interchangeable across contexts and context can't "contaminate" the rule.
+Keep the same Rule across the different environments on different organizations and even projects. Rules are thought as a communication's
+tool. They are interchangeable across contexts and context can't "contaminate" the rule.
 
-No everyone can modify all parameters. There is diferent kind of parameters and users to match, as it's described
-in the Actors Documentation.
+Not everyone can modify every parameter. There is diferent kind of parameters and users to match, as it's described
+in the Actors Documentation (TODO link).
 
 ## Solution architecture
 The current set of parameters are:
@@ -92,57 +92,57 @@ The current set of parameters are:
   - Params
 
 Check Params change the higher level of abstraction in Overlord. Are reserverd for technical things that
-are more relatable to Risk than technology. An example it's the maximun risk score obtained on an specific tool.
-Or the minimum version of encription found on an cerificate.
+are more relatable to Risk than technology and express the organization risk appetite/aversion or a compliance requirement. An example it's the maximun risk score obtained on an specific tool. Or the minimum version of encription found on an cerificate.
 
-Target Params are more about the places and technologies that you must use on your context.
+Target Params are related to the technical environemnt and technologies that you must use on your context.
 
-Gather Params are a Placeholder for things that we must Gather in order to ensure that the current state match
-the expected state.
+Gather Params are a placeholder for things that we must Gather (TODO complete).
 
-Params are the free context params that you can spcify when execute the rule. Also params that are no critical
+Params are the risk-agnostic and context-free params that you can spcify when you execute the rule. Also params that are no critical
 and anyone can set.
 
-# Rule Executor
+# Rule to Function Types finder (TODO, change name  hints: precompiler, scafolding, preprocesing, ...)
 
 ## Input - Output
-Parametrized Rule File, The avaliable typed functions -> Program Query
+Parametrized Rule File, The avaliable typed functions (built-in Rule Funtions and contributed) -> Program orchestration scafold
 
 ## Funcitonal Description
-A program Query it's an incompleted program, contains two kind of information inside:
- - Functions that we know (Rule Funtions and Single candidate Funcitons)
- - Paths to solve (An input type and an output type)
+A program Query it's an incompleted program, contains two kind of informations inside:
+ - Functions that we know (Rule Funtions and Single candidate Functions)
+ - Paths to solve (An input type and an output type), candidate function type requirements
 
 ## Implementations Problems
-Translate The Rule and their parameters into a valid program query require an iterative specification of find
-what current types describe the solution. The Function Finder need to know the specific types to search into.
+Translate The Rule and their parameters into a valid program query require an iterative specification to find
+what current types describe the solution. The Function Finder needs to know the specific types to search into.
 
-The Rule Executor will try to find the most near candidate between the current parameters and the avaliable
+The Rule Executor will try to find the nearest candidate between the current parameters and the avaliable
 types provided by the current avaliable functions.
 
-Also need to interpretate the current checkpoints on the program. Sometimes you need to use an specific 
-function on your context to provide a correct test. This implies to generate several queries.
+It also needs to interpretate additional constraints on the program. Sometimes you need to use an specific 
+function (a technical implementation/solution) on your context to provide a correct test. This implies to generate several queries.
 
 ## Solution architecture
+
+TODO
 
 # Function Finder
 
 ## Input - Output
-Program Query, filtered ammount of fuctions, all available functions -> Program Hint or Program
+Program Query, filtered collection of functions, all available functions -> Program Gap (Functions or Types) Hint or Final Program
 
 ## Funcitonal Description
-Most of the time the Function Finder will provide several valid programs. In current state of the solution
-we involve de user to choose if there is several propositions. Most of the time more parametrization will 
-lead you to one Program solution, so it's spected to execute from Rule Parametrizer and refine an adecuate
-solution to your Risks demands.
+Most of the time the Function Finder will provide several valid composed programs. In the current state of the solution
+we involve the user to choose if there are several proposals. Most of the time more parametrization will 
+lead you to a single Program solution, so it's expected to be executed from Rule Parametrizer and iterated to refine an adecuate
+solution to your Risks requirements.
 
-The secure nature of Overlord tend to involve the human in this loop because the current limitations of
+TODO: Review paragraph (The secure nature of Overlord tend to involve the human in this loop because the current limitations of
 machines understanding security requirements like Trustness of the current check. It's not the same trust
-on a configuration check than on a hack tool scan.
+on a configuration check than on a hack tool scan.)
 
 ## Implementations Problems
-Search among all the avaliable functions can lead us into an complete NP problem. If you think about it
-it's the same problem as the salesman travel problem.
+Search through all avaliable functions can lead us into a complete NP problem (TODO: check literature). If you think about it
+it's the same problem as the salesman travel problem. TODO (link to the papers)
 
 ## Solution architecture
 
