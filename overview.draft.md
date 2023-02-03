@@ -82,7 +82,7 @@ Keep the same Rule across the different environments on different organizations 
 tool. They are interchangeable across contexts and context can't "contaminate" the rule.
 
 Not everyone can modify every parameter. There is diferent kind of parameters and users to match, as it's described
-in the Actors Documentation (TODO link).
+in the [Actors Documentation](https://bbva.github.io/Overlord/overview/actors/).
 
 ## Solution architecture
 The current set of parameters are:
@@ -123,7 +123,13 @@ function (a technical implementation/solution) on your context to provide a corr
 
 ## Solution architecture
 
-TODO
+The task is to retrieve all the available information about the Rule in order to assemble the correct question
+for the function finder.
+
+It will uses the other pieces of software to provide an interactive Rule builder to the final user.
+
+To grant a viable result of the function finder, this software must reduce the query space at maximum. Keep in
+mind that this problem grows quickly to a complete NP problem.
 
 # Function Finder
 
@@ -136,7 +142,7 @@ we involve the user to choose if there are several proposals. Most of the time m
 lead you to a single Program solution, so it's expected to be executed from Rule Parametrizer and iterated to refine an adecuate
 solution to your Risks requirements.
 
-TODO: Review paragraph (The secure nature of Overlord tend to involve the human in this loop because the current limitations of
+TODO: Review paragraph (The secure nature of Overlord tend to involve the human in the loop because the current limitations of
 machines understanding security requirements like Trustness of the current check. It's not the same trust
 on a configuration check than on a hack tool scan.)
 
@@ -145,12 +151,24 @@ Search through all avaliable functions can lead us into a complete NP problem (T
 it's the same problem as the salesman travel problem. TODO (link to the papers)
 
 ## Solution architecture
+Using the state of art software sintesis techniques you can compute a valid program using an infinite-like ammount of 
+functions.
+
+There is some papers talking about this, like [this one](https://cseweb.ucsd.edu/~npolikarpova/publications/icfp22.pdf).  
+Please be aware that this paper requieres some knowledge about functional programming and Theory of computation.
 
 # Rule Result Signer
 
 ## Input - Output
 Program Result -> Signed Program Result
+
 ## Funcitonal Description
+This is the piece of software that ensures integrity using hashes. It validates at the end, but you can use it to compute,
+sign and verify thru all the rule's livecycle.
+
 ## Implementations Problems
+There is no big deal, just good cripo work.
+
 ## Solution architecture
+Simple check and sign program, the more options the best.
 
