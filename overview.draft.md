@@ -104,7 +104,7 @@ and anyone can set.
 # Rule to Function Types finder (TODO, change name  hints: precompiler, scafolding, preprocesing, ...)
 
 ## Input - Output
-Parametrized Rule File, The avaliable typed functions (built-in Rule Funtions and contributed) -> Program orchestration scafold
+Parametrized Rule File, The avaliable typed functions (built-in Rule Funtions and contributed) -> Program orchestration scaffold
 
 ## Funcitonal Description
 A program Query it's an incompleted program, contains two kind of informations inside:
@@ -119,43 +119,40 @@ The Rule Executor will try to find the nearest candidate between the current par
 types provided by the current avaliable functions.
 
 It also needs to interpretate additional constraints on the program. Sometimes you need to use an specific 
-function (a technical implementation/solution) on your context to provide a correct test. This implies to generate several queries.
+function (a technical implementation/solution) on your context to provide a correct test. 
 
 ## Solution architecture
 
 The task is to retrieve all the available information about the Rule in order to assemble the correct question
 for the function finder.
 
-It will uses the other pieces of software to provide an interactive Rule builder to the final user.
+It will use the other overlord components to provide an interactive Rule builder for each overlord user.
 
-To grant a viable result of the function finder, this software must reduce the query space at maximum. Keep in
-mind that this problem grows quickly to a complete NP problem.
+To ensure a viable result of the function finder, this software must reduce the query space at maximum, providing an
+filtered collection of functions to the function finder.
 
 # Function Finder
 
 ## Input - Output
-Program Query, filtered collection of functions, all available functions -> Program Gap (Functions or Types) Hint or Final Program
+Program Orchestration Scaffold, filtered collection of functions, all available functions -> Program Gap (Functions or Types) Hint or the Final Program
 
 ## Funcitonal Description
-Most of the time the Function Finder will provide several valid composed programs. In the current state of the solution
+Usually the Function Finder will provide several valid candidate programs. In the current state of the solution
 we involve the user to choose if there are several proposals. Most of the time more parametrization will 
 lead you to a single Program solution, so it's expected to be executed from Rule Parametrizer and iterated to refine an adecuate
 solution to your Risks requirements.
 
-TODO: Review paragraph (The secure nature of Overlord tend to involve the human in the loop because the current limitations of
-machines understanding security requirements like Trustness of the current check. It's not the same trust
-on a configuration check than on a hack tool scan.)
-
 ## Implementations Problems
-Search through all avaliable functions can lead us into a complete NP problem (TODO: check literature). If you think about it
-it's the same problem as the salesman travel problem. TODO (link to the papers)
+Search through all avaliable functions can lead us into a complete NP problem. If you think about it
+it's the same problem as the salesman travel problem.
 
 ## Solution architecture
 Using the state of art software sintesis techniques you can compute a valid program using an infinite-like ammount of 
 functions.
 
-There is some papers talking about this, like [this one](https://cseweb.ucsd.edu/~npolikarpova/publications/icfp22.pdf).  
-Please be aware that this paper requieres some knowledge about functional programming and Theory of computation.
+There is some papers talking about this, like [this one](https://cseweb.ucsd.edu/~npolikarpova/publications/icfp22.pdf).
+Please be aware that to read this paper will requiere some knowledge about program synthesis, e-graphs, Haskell and type systems.
+But it's not requiered to use Overlord solution, this is the engine under the hood.
 
 # Rule Result Signer
 
@@ -163,12 +160,14 @@ Please be aware that this paper requieres some knowledge about functional progra
 Program Result -> Signed Program Result
 
 ## Funcitonal Description
-This is the piece of software that ensures integrity using hashes. It validates at the end, but you can use it to compute,
-sign and verify thru all the rule's livecycle.
+This is the piece of software that ensures integrity from the original Rule to the end and that every 
+Actor set parameters under their responsability.
+It validates the final result at the end at the process, but Overlord will use it to compute, 
+sign and verify thru all the rule's lifecycle.
 
 ## Implementations Problems
-There is no big deal, just good cripo work.
+There is no big deal, just segregation of functions and good crypo work.
 
 ## Solution architecture
-Simple check and sign program, the more options the best.
+Simple check and sign program.
 
