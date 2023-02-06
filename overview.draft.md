@@ -96,7 +96,7 @@ are more relatable to Risk than technology and express the organization risk app
 
 Target Params are related to the technical environemnt and technologies that you must use on your context.
 
-Gather Params are a placeholder for things that we must Gather (TODO complete).
+Gather Params are a placeholder for things that we must Gather during execution.
 
 Params are the risk-agnostic and context-free params that you can spcify when you execute the rule. Also params that are no critical
 and anyone can set.
