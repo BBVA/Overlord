@@ -10,9 +10,10 @@ On a nutshell, from a linear big problem perspecive, the overlord components are
 graph LR
     A(Rule Interpreter) --> B(Rule Parametrizer)
     B --> C(Rule Executor)
-    C --> D(Function Finder)
-    D --> E(Component executor)
-    E --> F(Rule Result Signer)
+    C --> D(Function types Finder)
+    D --> E(Function Finder)
+    E --> F(Component Executor)
+    F --> G(Rule Result Signer)
 
 ~~~
 
@@ -103,7 +104,7 @@ Gather Params are a placeholder for things that we must "Gather" during executio
 Params are the risk-agnostic and context-free params that you can spcify when you execute the rule. Also params that are no critical
 and anyone can set.
 
-# Rule to Function Types finder (TODO: change name, hints: precompiler, scafolding, preprocesing, ...)
+# Function Types
 
 ## Input - Output
 Parametrized Rule File, The avaliable Typed Functions (built-in and contributed) -> Program orchestration scaffold
@@ -158,6 +159,31 @@ There are some papers discussing this problem, like [this one](https://cseweb.uc
 Please be aware that to read this paper will requiere some advanced knowledge about program synthesis, e-graphs, Haskell and type systems.
 Fortunately it's not requiered to understand and use the Overlord solution, this is the engine under the hood.
 
+# Component Executor
+
+## Input - Output
+Final Program -> Program Result
+
+## Functional Description
+This piece of software has its own repository well explained.
+
+TODO: set the link
+
+In a nutshell must be capable to execute any tool and integrate results between diferent pieces of software in a cordinated way.
+
+## Implementation problems
+
+TODO: set the link
+
+Mix and max several piecen of software can be a challenge problem to solve.
+
+## Solution architecture
+
+TODO: set the link
+
+Thanks to NixOS and their Flakes feature you can use software from a huge variety of sources and make it to work as a single piece
+of software.
+
 # Rule Results Signer
 
 ## Input - Output
@@ -168,6 +194,8 @@ This is the piece of software that ensures integrity from the original Rule and 
 
 It validates the final result at the end of the process, but Overlord will use it to compute, 
 sign and verify thru all the rule's lifecycle.
+
+You can learn how it works in the next [documentation](https://bbva.github.io/Overlord/en/overview/rules/).
 
 ## Implementations Problems
 There is no big deal, just segregation of functions and good crypo work.
