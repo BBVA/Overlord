@@ -30,7 +30,7 @@ The Rule DSL must be the simplest it can be. It's objetive is comunicate about a
 the highest level possible.
 
 Must define "What must be" regarding one or more controls already in place. And cannot allow the user
-specify the little details of "how to" check if control it's there.
+to specify the little details of "how to" check if control it's up and running as expected.
 This requirement it's by desing, no for technical reasons. There is a lot of good reasons, but the 
 biggest one is because companies can share the what but no the how they systems are. Another good
 reason is about separation of concerns; the one that write the rules maybe don't know how to check it
@@ -45,30 +45,32 @@ There is two main issues regarding Rule DSL:
  - Users tend to add their context all the time.
  - Users try to add how to do the check step by step.
 
-A valid Overlord Rule must avoid this two problems. Rule it's a context free communication tool. So can't
+A valid Overlord Rule must avoid this two problems. Rule it's a context free communication tool. So it can't
 describe any context detail or describe "how to do" anything.
 
-The Rule primary focus it's the "What must be". And the most important property of the rules is they 
-are inmutable. If anyone can change the rule thru the process the original rule, and their information,\
+The Rule primary focus it's the "What must be". And the most important property of the rules is that they 
+are inmutable. If anyone can change the rule thru the process then the original rule, and their information,
 will be lost.
 
 ## Solution architecture
-The current DSL proposal describe an state that must be found on a place, by example:
+The current DSL proposal describe an state that must be found on a control instance, by example:
 
-> All $(ip@gather) the port $(port@rule) must be on $(closed_ports@gather).
+```
+ All $(ip@gather) the port $(port@rule) must be on $(closed_ports@gather).
+```
 
 On this example we can see 3 parameters, two of them (ip and closed_ports) must be gathered from your 
-current systems to ensure the control. The other one (port) must be defined before executión, and 
-ideally, come from Thread Model session and control definitión.
+current systems to ensure they refers to the control instance under testing. The other one (port) must be defined before executión, and 
+ideally, come from a Thread Model session and control assessment and definition.
 
 
 # Rule Parametrizer
 
 ## Input - Output
-A valid Rule File, The avaliable typed functions -> Parametrized Rule File
+A valid Rule File, The avaliable Typed Functions -> Parametrized Rule File
 
 ## Funcitonal Description
-We understand a Paramatrized Rule File as a Valid Rule File that contains the maximum avaliable information
+We can see a Paramatrized Rule File as a Valid Rule File that contains the maximum avaliable information
 about the Parameters in order to generate a specific sub-set of functions.
 
 Be aware that parametrizing a Rule it's a complete kind of interaction with Overlord. You can specify a
@@ -78,14 +80,14 @@ The Rule must remain untouched so parametrizer will allways add context and neve
 In order to ensure Rule's inmutability the Parametrization it's a complete separated solution.
 
 ## Implementations Problems
-Keep the same Rule across the different environments on different organizations and even projects. Rules are thought as a communication's
-tool. They are interchangeable across contexts and context can't "contaminate" the rule.
+Keep the same Rule across the different environments on different organizations and even projects is not easy. Rules are intended to be a communication's
+tool. They are valid across contexts and context can't "contaminate" the rule.
 
-Not everyone can modify every parameter. There is diferent kind of parameters and users to match, as it's described
+Not everyone can modify every parameter. There are different kinds of parameters and users to match, as it's described
 in the [Actors Documentation](https://bbva.github.io/Overlord/overview/actors/).
 
 ## Solution architecture
-The current set of parameters are:
+The current set of parameters defined in Overlord are:
   - Check Params
   - Target Params
   - Gather Params
@@ -94,25 +96,25 @@ The current set of parameters are:
 Check Params change the higher level of abstraction in Overlord. Are reserverd for technical things that
 are more relatable to Risk than technology and express the organization risk appetite/aversion or a compliance requirement. An example it's the maximun risk score obtained on an specific tool. Or the minimum version of encription found on an cerificate.
 
-Target Params are related to the technical environemnt and technologies that you must use on your context.
+Target Params are related to the technical environemnt and technologies that you use on your context.
 
-Gather Params are a placeholder for things that we must Gather during execution.
+Gather Params are a placeholder for things that we must "Gather" during execution, in order to perform the final check or to obtain auxiliary data to reach that final check.
 
 Params are the risk-agnostic and context-free params that you can spcify when you execute the rule. Also params that are no critical
 and anyone can set.
 
-# Rule to Function Types finder (TODO, change name  hints: precompiler, scafolding, preprocesing, ...)
+# Rule to Function Types finder (TODO: change name, hints: precompiler, scafolding, preprocesing, ...)
 
 ## Input - Output
-Parametrized Rule File, The avaliable typed functions (built-in Rule Funtions and contributed) -> Program orchestration scaffold
+Parametrized Rule File, The avaliable Typed Functions (built-in and contributed) -> Program orchestration scaffold
 
 ## Funcitonal Description
-A program Query it's an incompleted program, contains two kind of informations inside:
- - Functions that we know (Rule Funtions and Single candidate Functions)
+A program scaffold it's an incompleted program, contains two kinds of informations inside:
+ - Functions that we know (Rule Funtions and Single Candidate Functions)
  - Paths to solve (An input type and an output type), candidate function type requirements
 
 ## Implementations Problems
-Translate The Rule and their parameters into a valid program query require an iterative specification to find
+Translate the Rule and their parameters into a valid program query require an iterative specification to find
 what current types describe the solution. The Function Finder needs to know the specific types to search into.
 
 The Rule Executor will try to find the nearest candidate between the current parameters and the avaliable
@@ -126,15 +128,15 @@ function (a technical implementation/solution) on your context to provide a corr
 The task is to retrieve all the available information about the Rule in order to assemble the correct question
 for the function finder.
 
-It will use the other overlord components to provide an interactive Rule builder for each overlord user.
+It will use other Overlord components to provide an interactive Rule builder for each Overlord user.
 
-To ensure a viable result of the function finder, this software must reduce the query space at maximum, providing an
+To ensure a viable result of the function finder, this software must reduce the query space at maximum, providing a
 filtered collection of functions to the function finder.
 
 # Function Finder
 
 ## Input - Output
-Program Orchestration Scaffold, filtered collection of functions, all available functions -> Program Gap (Functions or Types) Hint or the Final Program
+Program Orchestration Scaffold, filtered collection of functions, all available functions -> Program Gap Hint (function's Types to satisfy) or the Final Program
 
 ## Funcitonal Description
 Usually the Function Finder will provide several valid candidate programs. In the current state of the solution
@@ -142,27 +144,29 @@ we involve the user to choose if there are several proposals. Most of the time m
 lead you to a single Program solution, so it's expected to be executed from Rule Parametrizer and iterated to refine an adecuate
 solution to your Risks requirements.
 
+In case there's no candidate programs because the available functions can't be combined to build the required program, Function Finder will provide the expected types for the missing function 
+
 ## Implementations Problems
 Search through all avaliable functions can lead us into a complete NP problem. If you think about it
 it's the same problem as the salesman travel problem.
 
 ## Solution architecture
-Using the state of art software sintesis techniques you can compute a valid program using an infinite-like ammount of 
+Using the state of the art software synthesis techniques you can build a valid program using an infinite-like combination of 
 functions.
 
-There is some papers talking about this, like [this one](https://cseweb.ucsd.edu/~npolikarpova/publications/icfp22.pdf).
-Please be aware that to read this paper will requiere some knowledge about program synthesis, e-graphs, Haskell and type systems.
-But it's not requiered to use Overlord solution, this is the engine under the hood.
+There are some papers discussing this problem, like [this one](https://cseweb.ucsd.edu/~npolikarpova/publications/icfp22.pdf).
+Please be aware that to read this paper will requiere some advanced knowledge about program synthesis, e-graphs, Haskell and type systems.
+Fortunately it's not requiered to understand and use the Overlord solution, this is the engine under the hood.
 
-# Rule Result Signer
+# Rule Results Signer
 
 ## Input - Output
 Program Result -> Signed Program Result
 
 ## Funcitonal Description
-This is the piece of software that ensures integrity from the original Rule to the end and that every 
-Actor set parameters under their responsability.
-It validates the final result at the end at the process, but Overlord will use it to compute, 
+This is the piece of software that ensures integrity from the original Rule and each step of the process to the end result, and that every parameter was set by the right Actor.
+
+It validates the final result at the end of the process, but Overlord will use it to compute, 
 sign and verify thru all the rule's lifecycle.
 
 ## Implementations Problems
