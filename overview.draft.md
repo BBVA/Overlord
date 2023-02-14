@@ -19,8 +19,6 @@ graph LR
 
 Detailed interactions are provided next.
 
-TODO: Input Outputs are just conceptual proposals.
-
 # Rule Interpreter
 
 ## Input - Output
@@ -137,7 +135,7 @@ filtered collection of functions to the function finder.
 # Function Finder
 
 ## Input - Output
-Program Orchestration Scaffold, filtered collection of functions, all available functions -> Program Gap Hint (function's Types to satisfy) or the Final Program
+Program Orchestration Scaffold, filtered collection of functions, all available functions -> Program Gap Hint (function's Types to satisfy) or the Final Test Program
 
 ## Functional Description
 Usually the Function Finder will provide several valid candidate programs. In the current state of the solution
@@ -162,32 +160,31 @@ Fortunately it's not required to understand and use the Overlord solution, this 
 # Component Executor
 
 ## Input - Output
-Final Program -> Program Result
+Final Test Program -> Test Result
 
 ## Functional Description
 This piece of software has its own repository well explained.
 
 TODO: set the link
 
-In a nutshell must be capable to execute any tool and integrate results between different pieces of software in a coordinated way.
+In a nutshell it must be capable to execute any tool and integrate results between different pieces of software in a coordinated way.
 
 ## Implementation problems
 
 TODO: set the link
 
-Mix and max several pieces of software can be a challenge problem to solve.
+Mix and max several pieces of software can be a challenge problem to solve. The same tool, on a different version, can use a complete new set of dependencies that must play well between them.
 
 ## Solution architecture
 
 TODO: set the link
 
-Thanks to NixOS and their Flakes feature you can use software from a huge variety of sources and make it to work as a single piece
-of software.
+Thanks to NixOS and their Flakes feature you can use software from a huge variety of sources and make it to work as a single piece of software. TODO: Flakes link
 
 # Rule Results Signer
 
 ## Input - Output
-Program Result -> Signed Program Result
+Test Result -> Signed Test Result
 
 ## Functional Description
 This is the piece of software that ensures integrity from the original Rule and each step of the process to the end result, and that every parameter was set by the right Actor.
