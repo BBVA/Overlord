@@ -165,19 +165,19 @@ Final Test Program -> Test Result
 ## Functional Description
 This piece of software has its own repository well explained.
 
-TODO: set the link
+More info [here](https://github.com/BBVA/ductype-poc)
 
 In a nutshell it must be capable to execute any tool and integrate results between different pieces of software in a coordinated way.
 
 ## Implementation problems
 
-TODO: set the link
+More info [here](https://github.com/BBVA/ductype-poc)
 
 Mix and max several pieces of software can be a challenge problem to solve. The same tool, on a different version, can use a complete new set of dependencies that must play well between them.
 
 ## Solution architecture
 
-TODO: set the link
+More info [here](https://github.com/BBVA/ductype-poc)
 
 Thanks to NixOS and their Flakes feature you can use software from a huge variety of sources and make it to work as a single piece of software. TODO: Flakes link
 
